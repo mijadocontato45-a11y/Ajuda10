@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#fff8f0">
+  <title>Ajude meu cachorrinho 🐾</title>
+  <meta name="description" content="Ajude a arrecadar R$ 200 para a cirurgia do meu cachorrinho. Qualquer contribuição faz diferença.">
+  <style>
+    :root {
+      --cream: #fff8f0;
+      --paper: #ffffff;
+      --ink: #29251f;
+      --muted: #71685f;
+      --orange: #ed7a36;
+      --orange-dark: #c9571b;
+      --peach: #ffe5d2;
+      --green: #287a55;
+      --line: #f0dfd1;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink); background: radial-gradient(circle at top left, #ffe8d7 0, transparent 32rem), var(--cream);
+      line-height: 1.6;
+    }
+    .wrap { width: min(100% - 32px, 980px); margin: 0 auto; }
+    header { padding: 22px 0; display: flex; align-items: center; gap: 10px; font-weight: 800; }
+    .paw { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 14px; background: var(--peach); font-size: 24px; }
+    .hero { display: grid; grid-template-columns: 1.05fr .95fr; gap: 34px; align-items: center; padding: 34px 0 48px; }
+    .eyebrow { display: inline-block; color: var(--orange-dark); background: #fff0e5; border: 1px solid #ffdbc4; border-radius: 999px; padding: 6px 12px; font-size: 13px; font-weight: 800; letter-spacing: .02em; }
+    h1 { font-size: clamp(2.25rem, 6vw, 4.2rem); line-height: 1.04; letter-spacing: -.045em; margin: 18px 0; }
+    h1 span { color: var(--orange-dark); }
+    .lead { color: var(--muted); font-size: 1.08rem; max-width: 550px; }
+    .photo {
+      min-height: 340px; display: grid; place-items: center; border-radius: 28px;
+      background: linear-gradient(145deg, #ffd5b7, #fff0e4); border: 1px solid #f4d2bb;
+      box-shadow: 0 20px 55px #7d482016; overflow: hidden; position: relative;
+    }
+    .photo img { width: 100%; height: 100%; min-height: 340px; object-fit: cover; position: absolute; inset: 0; }
+    .photo-placeholder { text-align: center; padding: 30px; color: #8b4d2b; }
+    .photo-placeholder .dog { font-size: 112px; line-height: 1.2; }
+    .photo-placeholder p { margin: 8px 0 0; font-weight: 700; }
+    .card { background: var(--paper); border: 1px solid var(--line); border-radius: 24px; padding: 26px; box-shadow: 0 14px 38px #59351a0b; }
+    .donation { margin: 0 auto 56px; max-width: 720px; }
+    .goal-row { display: flex; align-items: end; justify-content: space-between; gap: 16px; }
+    .goal-label { color: var(--muted); font-size: 14px; }
+    .amount { font-size: 2.5rem; font-weight: 850; line-height: 1.2; letter-spacing: -.04em; }
+    .goal-tag { background: #edf8f1; color: var(--green); padding: 7px 11px; border-radius: 999px; font-size: 13px; font-weight: 800; white-space: nowrap; }
+    .bar { margin: 18px 0 8px; height: 10px; background: #f4e9e0; border-radius: 999px; overflow: hidden; }
+    .bar span { display: block; width: 0%; height: 100%; background: var(--orange); border-radius: inherit; }
+    .small { font-size: 13px; color: var(--muted); }
+    .pix-box { margin-top: 22px; padding: 18px; background: #fff9f4; border: 1px dashed #e9b28e; border-radius: 16px; }
+    .pix-label { font-size: 13px; color: var(--muted); font-weight: 700; }
+    .pix-key { font-size: 1rem; font-weight: 800; overflow-wrap: anywhere; margin: 7px 0 14px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; }
+    button, .share {
+      border: 0; border-radius: 12px; padding: 13px 17px; font: inherit; font-weight: 800; cursor: pointer; text-decoration: none;
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px; transition: transform .15s, opacity .15s;
+    }
+    button:hover, .share:hover { transform: translateY(-1px); }
+    .primary { background: var(--orange); color: white; }
+    .secondary { background: white; border: 1px solid var(--line); color: var(--ink); }
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 56px; }
+    .step { background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 20px; }
+    .step-icon { font-size: 27px; }
+    .step h3 { margin: 8px 0 5px; font-size: 1rem; }
+    .step p { margin: 0; color: var(--muted); font-size: .92rem; }
+    .note { border-left: 4px solid var(--orange); padding: 4px 0 4px 16px; color: var(--muted); margin: 0 0 50px; }
+    footer { border-top: 1px solid var(--line); padding: 24px 0 35px; text-align: center; color: var(--muted); font-size: 13px; }
+    @media (max-width: 720px) {
+      .hero { grid-template-columns: 1fr; padding-top: 16px; gap: 22px; }
+      .photo, .photo img { min-height: 260px; }
+      .photo-placeholder .dog { font-size: 82px; }
+      .steps { grid-template-columns: 1fr; }
+      .card { padding: 20px; }
+      .goal-row { align-items: start; flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <header class="wrap">
+    <div class="paw">🐾</div>
+    <div>Uma patinha de ajuda</div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <div>
+        <span class="eyebrow">CAMPANHA DE DOAÇÃO</span>
+        <h1>Vamos ajudar meu <span>cachorrinho?</span> 🐶</h1>
+        <p class="lead">Estou arrecadando dinheiro para ajudar a pagar a cirurgia do meu melhor amigo. Minha meta é de <strong>R$ 200</strong>, e qualquer valor já ajuda muito. Se não puder doar, compartilhar também faz diferença! ❤️</p>
+        <a class="share secondary" href="#doar">💛 Quero ajudar</a>
+      </div>
+      <div class="photo" aria-label="Espaço para foto do cachorrinho">
+        <!-- Para colocar sua foto, substitua o bloco abaixo por:
+        <img src="cachorrinho.jpg" alt="Foto do meu cachorrinho">
+        e envie cachorrinho.jpg para a mesma pasta do site. -->
+        <div class="photo-placeholder">
+          <div class="dog">🐕</div>
+          <p>Coloque aqui uma foto do seu cachorrinho</p>
+          <span class="small">Uma foto real ajuda as pessoas a conhecerem seu companheirinho.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="card donation" id="doar">
+      <div class="goal-row">
+        <div>
+          <div class="goal-label">Meta da campanha</div>
+          <div class="amount">R$ 200,00</div>
+        </div>
+        <span class="goal-tag">🐾 Ajude como puder</span>
+      </div>
+      <div class="bar" aria-label="Progresso inicial da arrecadação"><span></span></div>
+      <div class="small">Meta total: R$ 200,00. O progresso não é atualizado automaticamente.</div>
+
+      <div class="pix-box">
+        <div class="pix-label">CHAVE PIX PARA DOAÇÃO</div>
+        <div class="pix-key" id="pixKey">COLOQUE_SUA_CHAVE_PIX_AQUI</div>
+        <div class="actions">
+          <button class="primary" id="copyPix" type="button">📋 Copiar chave Pix</button>
+          <button class="secondary" id="sharePage" type="button">📤 Compartilhar campanha</button>
+        </div>
+        <p class="small" id="feedback" role="status" aria-live="polite">Confira a chave Pix antes de doar. Obrigado pelo carinho! ❤️</p>
+      </div>
+    </section>
+
+    <section class="steps" aria-label="Como ajudar">
+      <article class="step"><div class="step-icon">💸</div><h3>Doe qualquer valor</h3><p>R$ 2, R$ 5 ou o que estiver ao seu alcance já é uma ajuda.</p></article>
+      <article class="step"><div class="step-icon">📲</div><h3>Compartilhe</h3><p>Envie esta página para amigos e familiares.</p></article>
+      <article class="step"><div class="step-icon">❤️</div><h3>Ajude com carinho</h3><p>Cada gesto conta para chegarmos à meta de R$ 200.</p></article>
+    </section>
+
+    <p class="note"><strong>Transparência:</strong> se possível, publique atualizações sobre a cirurgia e os gastos, sem expor dados pessoais. Edite esta página para incluir apenas informações verdadeiras sobre seu cachorrinho.</p>
+  </main>
+
+  <footer>
+    Feito com carinho por quem ama os animais 🐾<br>
+    Obrigado por ajudar!
+  </footer>
+
+  <script>
+    const pixKey = document.getElementById('pixKey').textContent.trim();
+    const feedback = document.getElementById('feedback');
+
+    document.getElementById('copyPix').addEventListener('click', async () => {
+      if (pixKey === 'd205d94c-5d07-4f34-bdb4-8f78f1cab811') {
+        feedback.textContent = 'Edite o arquivo index.html e coloque sua chave Pix antes de publicar.';
+        return;
+      }
+      try {
+        await navigator.clipboard.writeText(pixKey);
+        feedback.textContent = 'Chave Pix copiada! Obrigado por ajudar. ❤️';
+      } catch (e) {
+        feedback.textContent = 'Não foi possível copiar automaticamente. Selecione e copie a chave Pix acima.';
+      }
+    });
+
+    document.getElementById('sharePage').addEventListener('click', async () => {
+      const shareData = { title: document.title, text: 'Ajude meu cachorrinho a conseguir a cirurgia. A meta é R$ 200! 🐾', url: location.href };
+      try {
+        if (navigator.share) await navigator.share(shareData);
+        else {
+          await navigator.clipboard.writeText(location.href);
+          feedback.textContent = 'Link da campanha copiado para compartilhar!';
+        }
+      } catch (e) {
+        if (e.name !== 'AbortError') feedback.textContent = 'Copie o endereço desta página e envie para seus amigos.';
+      }
+    });
+  </script>
+</body>
+</html>
